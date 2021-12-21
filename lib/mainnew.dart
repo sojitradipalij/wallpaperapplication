@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:rxdart/rxdart.dart';
@@ -8,8 +9,6 @@ import 'package:wallpaperapplication/downloads_page.dart';
 import 'package:wallpaperapplication/favorites_page.dart';
 import 'package:wallpaperapplication/trendingwallpaper.dart';
 import 'package:wallpaperapplication/wallpapercategory.dart';
-
-import 'dart:ui';
 
 void main() => runApp(MyApp());
 
@@ -69,7 +68,7 @@ class _MyHomePageState extends State<MyHomePage>
         'builder': (BuildContext context) => WallpaperCategory(),
       },
       {
-        'title': 'Favourites ',
+        'title': 'Favourites',
         'icon': Icons.favorite,
         'builder': (BuildContext context) => FavoritesPage(sortOrderS.stream),
       },
@@ -83,19 +82,19 @@ class _MyHomePageState extends State<MyHomePage>
     listTiles = nav
         .asMap()
         .map((index, m) {
-      return MapEntry(
-        index,
-        ListTile(
-          title: Text(m['title']),
-          trailing: Icon(m['icon']),
-          onTap: () {
-            setState(() => selectedIndex = index);
+          return MapEntry(
+            index,
+            ListTile(
+              title: Text(m['title']),
+              trailing: Icon(m['icon']),
+              onTap: () {
+                setState(() => selectedIndex = index);
 
-            Navigator.pop(context);
-          },
-        ),
-      );
-    })
+                Navigator.pop(context);
+              },
+            ),
+          );
+        })
         .values
         .toList();
   }
@@ -252,22 +251,22 @@ class _MyHomePageState extends State<MyHomePage>
 
   Future<bool> _onWillPop() async {
     return (await showDialog(
-      context: context,
-      builder: (context) => new AlertDialog(
-        title: Text('Exit app'),
-        content: Text('Do you want to exit app?'),
-        actions: <Widget>[
-          TextButton(
-            child: Text('No'),
-            onPressed: () => Navigator.pop(context, false),
+          context: context,
+          builder: (context) => new AlertDialog(
+            title: Text('Exit app'),
+            content: Text('Do you want to exit app?'),
+            actions: <Widget>[
+              TextButton(
+                child: Text('No'),
+                onPressed: () => Navigator.pop(context, false),
+              ),
+              TextButton(
+                child: Text('Yes'),
+                onPressed: () => Navigator.pop(context, true),
+              ),
+            ],
           ),
-          TextButton(
-            child: Text('Yes'),
-            onPressed: () => Navigator.pop(context, true),
-          ),
-        ],
-      ),
-    )) ??
+        )) ??
         false;
   }
 }
