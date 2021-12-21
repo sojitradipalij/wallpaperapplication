@@ -69,7 +69,7 @@ class _MyHomePageState extends State<MyHomePage>
         'builder': (BuildContext context) => WallpaperCategory(),
       },
       {
-        'title': 'Favourites',
+        'title': 'Favourites ',
         'icon': Icons.favorite,
         'builder': (BuildContext context) => FavoritesPage(sortOrderS.stream),
       },
